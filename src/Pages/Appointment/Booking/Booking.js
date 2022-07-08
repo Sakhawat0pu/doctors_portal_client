@@ -4,7 +4,7 @@ import BookingModal from "../BookingModal/BookingModal";
 
 const Booking = ({ service, date, setBookingMessage }) => {
   const [open, setOpen] = useState(false);
-  const { name, time, space } = service;
+  const { name, time, space, price } = service;
 
   const handleOpen = () => {
     setOpen(true);
@@ -18,7 +18,18 @@ const Booking = ({ service, date, setBookingMessage }) => {
         <Typography style={{ fontSize: 14, fontWeight: 500 }} variant="p">
           {time}
         </Typography>
-        <Typography my={2} variant="caption" display="block">
+        <Typography
+          style={{
+            fontSize: 14,
+            fontWeight: 500,
+            display: "block",
+            marginTop: 10,
+            color: "red",
+          }}
+        >
+          Price: ${price}
+        </Typography>
+        <Typography my={1} variant="caption" display="block">
           {space} spaces available
         </Typography>
         <Button onClick={handleOpen} variant="contained">

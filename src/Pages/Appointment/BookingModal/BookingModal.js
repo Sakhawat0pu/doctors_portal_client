@@ -19,7 +19,7 @@ const style = {
 };
 
 const BookingModal = ({ date, service, open, setOpen, setBookingMessage }) => {
-  const { name, time } = service;
+  const { name, time, price } = service;
   const { user } = useAuth();
   const dateString = new Date(date).toLocaleDateString();
 
@@ -29,6 +29,7 @@ const BookingModal = ({ date, service, open, setOpen, setBookingMessage }) => {
     phone: "",
     serviceName: name,
     time: time,
+    price: price,
   };
   const [bookingInfo, setBookingInfo] = useState(initialInfo);
 
@@ -91,7 +92,6 @@ const BookingModal = ({ date, service, open, setOpen, setBookingMessage }) => {
             <form onSubmit={handleBookSubmit}>
               <TextField
                 sx={{ width: "95%", m: 1 }}
-                id="outlined-size-small"
                 defaultValue={time}
                 variant="outlined"
                 size="small"
@@ -99,7 +99,6 @@ const BookingModal = ({ date, service, open, setOpen, setBookingMessage }) => {
               />
               <TextField
                 sx={{ width: "95%", m: 1 }}
-                id="outlined-size-small"
                 defaultValue={user.email ? user.displayName : "Name"}
                 variant="outlined"
                 size="small"
@@ -109,7 +108,6 @@ const BookingModal = ({ date, service, open, setOpen, setBookingMessage }) => {
               />
               <TextField
                 sx={{ width: "95%", m: 1 }}
-                id="outlined-size-small"
                 type="email"
                 defaultValue={user.email ? user.email : "Email"}
                 variant="outlined"
@@ -120,7 +118,6 @@ const BookingModal = ({ date, service, open, setOpen, setBookingMessage }) => {
               />
               <TextField
                 sx={{ width: "95%", m: 1 }}
-                id="outlined-size-small"
                 placeholder="Phone Number"
                 variant="outlined"
                 size="small"
@@ -130,7 +127,13 @@ const BookingModal = ({ date, service, open, setOpen, setBookingMessage }) => {
               />
               <TextField
                 sx={{ width: "95%", m: 1 }}
-                id="outlined-size-small"
+                defaultValue={`$${price}`}
+                variant="outlined"
+                size="small"
+                disabled
+              />
+              <TextField
+                sx={{ width: "95%", m: 1 }}
                 defaultValue={dateString}
                 variant="outlined"
                 size="small"

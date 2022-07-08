@@ -6,13 +6,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -23,6 +16,7 @@ import MakeAdmin from "../MakeAdmin/MakeAdmin";
 import AddDoctor from "../AddDoctor/AddDoctor";
 import useAuth from "../../../hooks/useAuth";
 import AdminRoute from "../../Login/AdminRoute/AdminRoute";
+import Payment from "../Payment/Payment";
 
 const drawerWidth = 180;
 
@@ -80,18 +74,6 @@ function Dashboard(props) {
           <Divider />
         </Box>
       )}
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
     </div>
   );
 
@@ -177,6 +159,11 @@ function Dashboard(props) {
             <Route path="makeAdmin" element={<MakeAdmin />} />
             <Route path="addDoctor" element={<AddDoctor />} />
           </Route>
+          <Route
+            path="dashboardHome/payment/:appointmentId"
+            element={<Payment></Payment>}
+          />
+          <Route path="payment/:appointmentId" element={<Payment></Payment>} />
         </Routes>
       </Box>
     </Box>
